@@ -19,6 +19,10 @@
     "body": "Post Body"
 }
 ``` 
-should create a post and return the newly created post in the response.
+Should create a post and return the newly created post in the response.
+**Validate userId, title, description. Validation criteria:**
+    a. userId must be a valid ObjectId
+    b. title must be a string and minimum of 10 characters excluding spaces
+    c. description must be a string and minimum of 50 characters excluding spaces
 
-3. `[GET] http://localhost:3000/users` is an existing API that is used in front-end to show list of all users with their post count. Optimize the API to achieve minimum execution time and smallest load on server.
+3. `[GET] http://localhost:3000/users` is an existing API that is used in front-end to show list of all users with their post count. Optimize the API to achieve minimum execution time and smallest load on server. You can introduce additional parameters in the request to restrict and control your result set.
