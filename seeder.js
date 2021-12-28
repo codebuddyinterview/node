@@ -1,6 +1,7 @@
-const connection = require('./src/helpers/db.helper');
-const user = require('./src/schema/user.schema');
 const faker = require('faker');
+const connection = require('./src/helpers/db.helper');
+const User = require('./src/schema/user.schema');
+const Post = require('./src/schema/post.schema');
 
 connection.then(async () => {
     console.log('Connected to database...');
@@ -8,10 +9,20 @@ connection.then(async () => {
     
     Promise.all(
         Array.from(Array(100).keys()).map(async () => {
-            const resp = user.create({
+            const resp = User.create({
                 name: faker.name.firstName()
             });
             console.log("Created user's name: ", resp.name);
+
+            Promise.all(
+                Array.from(Array(2).keys()).map(async () => {
+                    Post.create({
+                        userId: resp._id,
+                        title: faker.lorem.sentence(),
+                        description: faker.lorem.paragraph(10)
+                    });
+                }
+            ));
         }
     ));
 
