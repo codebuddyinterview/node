@@ -11,7 +11,12 @@
 1. `npm run seeder` creates 100 users and 2 posts per user. Find out why this is not working, fix the seeder and seed data.
 
 
-1. Create seeder for 100 users
-2. Create 2 posts for each user
-3. Fetch a list of 100 users with posts count
-4. Create post for user with title and description
+2. `[POST] http://localhost:3000/posts` with data 
+``` json
+{
+    "userId": "{userId}",
+    "title": "Post Title",
+    "body": "Post Body"
+}
+``` 
+should create a post and return the newly created post in the response.
