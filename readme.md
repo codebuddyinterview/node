@@ -20,3 +20,5 @@
 }
 ``` 
 should create a post and return the newly created post in the response.
+
+3. `[GET] http://localhost:3000/users` is an existing API that is used in front-end to show list of all users with their post count. Optimize the API to achieve minimum execution time and smallest load on server.
