@@ -26,3 +26,5 @@ Should create a post and return the newly created post in the response.
     c. description must be a string and minimum of 50 characters excluding spaces
 
 3. `[GET] http://localhost:3000/users` is an existing API that is used in front-end to show list of all users with their post count. Optimize the API to achieve minimum execution time and smallest load on server. You can introduce additional parameters in the request to restrict and control your result set.
+
+### Time allocated: 1hr 30min (if need extra time please reach out to the HR who is taking your interview)
