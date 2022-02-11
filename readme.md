@@ -39,7 +39,7 @@
     **Error response should be in the format:**
     ``` json
     {
-        error: "Error message"
+        "error": "Error message"
     }
     ```
 
