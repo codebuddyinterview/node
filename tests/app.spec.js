@@ -13,7 +13,7 @@ beforeAll(async () => {
 afterAll(async () => await disconnect());
 
 describe('POST /', () => {
-    describe('Test seeder', (done) => {
+    describe('#1. Test seeder', (done) => {
         test("DB should be empty at first", async () => {
             const [allUsersCount, allPostsCount] = await Promise.all([
                 User.countDocuments({}),
@@ -33,4 +33,73 @@ describe('POST /', () => {
             expect(allPostsCount).toBe(200);
         });
     });
+
+    describe('#2. Test [POST] http://localhost:3000/posts', (done) => {
+        test("Should create a valid post with valid date", async () => {
+            const user = await User.findOne({});
+            const data = {
+                userId: user.id,
+                title: "Test post title",
+                description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            }
+            await request(app)
+                .post('/posts')
+                .send(JSON.stringify(data))
+                .set('Content-Type', 'application/json')
+                .then(response => {
+                    expect(response.statusCode).toBe(200);
+                    expect(response.body?.data?._id).toBeDefined();
+                    expect(response.body?.data?.userId).toBe(data.userId);
+                    expect(response.body?.data?.title).toBe(data.title);
+                    expect(response.body?.data?.description).toBe(data.description);
+                });
+        });
+        test("Should fail with invalid userId", async () => {
+            const data = {
+                userId: 1,
+                title: "Test post title",
+                description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            }
+            await request(app)
+                .post('/posts')
+                .send(JSON.stringify(data))
+                .set('Content-Type', 'application/json')
+                .then(response => {
+                    expect(response.statusCode).toBe(422);
+                    expect(response.body?.error).toBe("Invalid userId");
+                });
+        });
+        test("Should fail with invalid title", async () => {
+            const user = await User.findOne({});
+            const data = {
+                userId: user.id,
+                title: "Test",
+                description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            }
+            await request(app)
+                .post('/posts')
+                .send(JSON.stringify(data))
+                .set('Content-Type', 'application/json')
+                .then(response => {
+                    expect(response.statusCode).toBe(422);
+                    expect(response.body?.error).toBe("Invalid title");
+                });
+        });
+        test("Should fail with invalid description", async () => {
+            const user = await User.findOne({});
+            const data = {
+                userId: user.id,
+                title: "Test post title",
+                description: "Lorem Ipsum",
+            }
+            await request(app)
+                .post('/posts')
+                .send(JSON.stringify(data))
+                .set('Content-Type', 'application/json')
+                .then(response => {
+                    expect(response.statusCode).toBe(422);
+                    expect(response.body?.error).toBe("Invalid description");
+                });
+        });
+    })
 })
