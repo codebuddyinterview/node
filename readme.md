@@ -43,4 +43,26 @@
     }
     ```
 
-3. `[GET] http://localhost:3000/users` is an existing API that is used in front-end to show list of all users with their post count. Optimize the API to achieve minimum execution time and smallest load on server. You can introduce additional parameters in the request to restrict and control your result set.
+3. `[GET] http://localhost:3000/users` is an existing API that is used in front-end to show list of all users with their post count. 
+    1. Optimize the API to achieve minimum execution time and smallest load on server and introduce pagination. API should respond with 10 users per request.
+    2. API should respond with the following format:
+    ``` json
+    {
+        "data": {
+            "users": [
+                {
+                    "_id": "{ObjectId}",
+                    "name": "User Name",
+                    "postCount": "{postCount}"
+                }
+            ],
+            "meta": {
+                "totalCount": "{totalCount}",
+                "currentPage": "{currentPage}",
+                "totalPages": "{totalPages}",
+                "limit": "{limit}",
+                "hasNextPage": "{hasNextPage}",
+                "hasPreviousPage": "{hasPreviousPage}"
+            }
+        }
+    }
