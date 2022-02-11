@@ -127,10 +127,15 @@ describe('POST /', () => {
                     expect(response.body?.data?.users).toBeDefined();
                     // must be array
                     expect(Array.isArray(response.body?.data?.users)).toBe(true);
-                    const { meta } = response.body?.data;
+                    const { meta, users } = response.body?.data;
 
                     // must have meta object
                     expect(meta).toBeDefined();
+                    expect(users).toBeDefined();
+
+                    // users must have 10 items
+                    expect(users.length).toBe(10);
+
                     expect(meta.totalCount).toBeDefined()
                     expect(meta.totalCount).toBe(10)
                     expect(meta.currentPage).toBeDefined()
