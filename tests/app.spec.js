@@ -112,8 +112,10 @@ describe('POST /', () => {
                     expect(response.body?.data?.users).toBeDefined();
                     // must be array
                     expect(Array.isArray(response.body?.data?.users)).toBe(true);
-                    const { users, meta } = response.body?.data;
+                    const { users } = response.body?.data;
                     // must have post count
+                    expect(users[0]._id).toBeDefined();
+                    expect(users[0].name).toBeDefined();
                     expect(users[0].postCount).toBeDefined();
                 });
         });

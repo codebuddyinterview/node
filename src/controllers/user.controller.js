@@ -4,6 +4,7 @@ const { asyncForEach } = require('../helpers/async.helper');
 
 module.exports.getUsersWithPostCount = async (req, res) => {
     try {
+        // TODO: Task #3
         const users = await User.find({}).lean();
         
         await asyncForEach(users, async (user, i) => {
