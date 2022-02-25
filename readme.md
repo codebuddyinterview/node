@@ -12,57 +12,19 @@
 
 
 2. `[POST] http://localhost:3000/posts` with data 
-    ``` json
-    {
-        "userId": "{userId}",
-        "title": "Post Title",
-        "description": "Post description"
-    }
-    ``` 
+``` json
+{
+    "userId": "{userId}",
+    "title": "Post Title",
+    "body": "Post Body"
+}
+``` 
+Should create a post and return the newly created post in the response.
+**Validate userId, title, description. Validation criteria:**
+    a. userId must be a valid ObjectId
+    b. title must be a string and minimum of 10 characters excluding spaces
+    c. description must be a string and minimum of 50 characters excluding spaces
 
-    **Should create a post and return the newly created post in the response. Validate userId, title, description. Validation criteria:**
-    1. userId must be a valid ObjectId
-    2. title must be a string and minimum of 10 characters after trimming
-    3. description must be a string and minimum of 50 characters after trimming
+3. `[GET] http://localhost:3000/users` is an existing API that is used in front-end to show list of all users with their post count. Optimize the API to achieve minimum execution time and smallest load on server. You can introduce additional parameters in the request to restrict and control your result set.
 
-    **Success response should be in the format:**
-    ``` json
-    {
-        "data": {
-            "_id": "{ObjectId}",
-            "userId": "{userId}",
-            "title": "Post Title",
-            "description": "Post description"
-        }
-    }
-    ```
-    **Error response should be in the format:**
-    ``` json
-    {
-        error: "Error message"
-    }
-    ```
-
-3. `[GET] http://localhost:3000/users` is an existing API that is used in front-end to show list of all users with their post count. 
-    1. Optimize the API to achieve minimum execution time and smallest load on server and introduce pagination. API should respond with 10 users per request.
-    2. API should respond with the following format:
-        ``` json
-        {
-            "data": {
-                "users": [
-                    {
-                        "_id": "{ObjectId}",
-                        "name": "User Name",
-                        "postCount": "{postCount}"
-                    }
-                ],
-                "meta": {
-                    "totalCount": 10,
-                    "currentPage": 1,
-                    "totalPages": 10,
-                    "limit": 10,
-                    "hasNextPage": true,
-                    "hasPreviousPage": false
-                }
-            }
-        }
+### Time allocated: 1hr 30min (if need extra time please reach out to the HR who is taking your interview)
