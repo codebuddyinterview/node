@@ -9,7 +9,7 @@
 
 
 # Note
-Run `npm run test` to run the test cases. All test cases should be pass in your final submit otherwise the task is considered as incomplete.
+Run `npm run test` to run the test cases. All test cases should pass in your final submit otherwise the task is considered as incomplete.
 
 # Tasks
 1. `npm run seeder` creates 100 users and 2 posts per user. Find out why this is not working, fix the seeder and seed data.
