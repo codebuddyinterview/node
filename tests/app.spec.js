@@ -17,30 +17,60 @@ describe('POST /', () => {
                     expect(response.body?.data?.users).toBeDefined();
                     // must be array
                     expect(Array.isArray(response.body?.data?.users)).toBe(true);
-                    const { users, meta } = response.body?.data;
+                    const { users } = response.body?.data;
                     // must have post count
-                    expect(users[0].postCount).toBeDefined();
+                    expect(users[0].posts).toBeDefined();
                 });
         });
         test("Should have pagination implemented", async () => {
             await request(app)
-                .get('/users')
+                .get('/users?page=1&limit=10')
                 .then(response => {
                     expect(response.statusCode).toBe(200);
                     expect(response.body?.data?.users).toBeDefined();
                     // must be array
                     expect(Array.isArray(response.body?.data?.users)).toBe(true);
-                    const { meta } = response.body?.data;
+                    const { pagination } = response.body?.data;
 
                     // must have meta object
-                    expect(meta).toBeDefined();
-                    expect(meta.totalCount).toBeDefined()
-                    expect(meta.totalCount).toBe(10)
-                    expect(meta.currentPage).toBeDefined()
-                    expect(meta.totalPages).toBeDefined()
-                    expect(meta.limit).toBeDefined()
-                    expect(meta.hasNextPage).toBeDefined()
-                    expect(meta.hasPreviousPage).toBeDefined()
+                    expect(pagination).toBeDefined();
+                    expect(pagination.totalDocs).toBeDefined()
+                    expect(pagination.totalDocs).toBe(100)
+                    expect(pagination.page).toBeDefined()
+                    expect(pagination.page).toBe(1)
+                    expect(pagination.totalPages).toBeDefined()
+                    expect(pagination.totalPages).toBe(10)
+                    expect(pagination.limit).toBeDefined()
+                    expect(pagination.limit).toBe(10)
+                    expect(pagination.hasNextPage).toBeDefined()
+                    expect(pagination.hasNextPage).toBe(true)
+                    expect(pagination.hasPrevPage).toBeDefined()
+                    expect(pagination.hasPrevPage).toBe(false)
+                });
+
+            await request(app)
+                .get('/users?page=2&limit=10')
+                .then(response => {
+                    expect(response.statusCode).toBe(200);
+                    expect(response.body?.data?.users).toBeDefined();
+                    // must be array
+                    expect(Array.isArray(response.body?.data?.users)).toBe(true);
+                    const { pagination } = response.body?.data;
+
+                    // must have meta object
+                    expect(pagination).toBeDefined();
+                    expect(pagination.totalDocs).toBeDefined()
+                    expect(pagination.totalDocs).toBe(100)
+                    expect(pagination.page).toBeDefined()
+                    expect(pagination.page).toBe(2)
+                    expect(pagination.totalPages).toBeDefined()
+                    expect(pagination.totalPages).toBe(10)
+                    expect(pagination.limit).toBeDefined()
+                    expect(pagination.limit).toBe(10)
+                    expect(pagination.hasNextPage).toBeDefined()
+                    expect(pagination.hasNextPage).toBe(true)
+                    expect(pagination.hasPrevPage).toBeDefined()
+                    expect(pagination.hasPrevPage).toBe(true)
                 });
         });
     });
