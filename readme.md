@@ -10,6 +10,8 @@
 # Note
 1. **DON'T CLONE THIS REPO and DON'T MAKE PULL REQUESTS TO THIS REPO.** FORK this repo to your own GitHub account then clone it. Fork button is the top right corner of the page. The forked URL should look something like this: https://github.com/${YOUR_GITHUB_USERNAME}/node
 # ![How to Fork](src/assets/images/fork.png)
+2. **You should not use any external library for pagination.**
+3. **You should not use JS for paginating the data, pagination has to be done on DB directly.**
 2. Run `npm run test` to run the test cases. **All test cases should pass in your final submit otherwise the task is considered as incomplete.**
 3. Run `npm install` to install the project dependencies.
 4. `npm run seed` creates 100 users and 2 posts per user. **Use this seeder to populate the database.**
