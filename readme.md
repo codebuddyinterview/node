@@ -16,6 +16,7 @@
 4. Install the dependencies by running `yarn` or `npm i`.
 5. Run `npm run test` or `yarn test` to run the test cases. **All test cases should pass in your final submit otherwise the task is considered as incomplete.**
 6. `npm run seed` or `yarn seed` creates 100 users and 2 posts per user. **Use this seeder to populate the database.**
+7. Work on `src/controllers/user.controller.js@getUsersWithPostCount` TODO section only.
 
 # Task
 `[GET] http://localhost:3000/users` should return all the users with their post count. This API should have server side pagination implemented.
