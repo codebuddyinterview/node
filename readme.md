@@ -12,9 +12,10 @@
 # ![How to Fork](src/assets/images/fork.png)
 2. **You should not use any external library for pagination.**
 3. **You should not use JS for paginating the data, pagination has to be done on DB directly.**
-2. Run `npm run test` to run the test cases. **All test cases should pass in your final submit otherwise the task is considered as incomplete.**
-3. Run `npm install` to install the project dependencies.
-4. `npm run seed` creates 100 users and 2 posts per user. **Use this seeder to populate the database.**
+3. Create a new `.env` file by copying the `.env.example` file. Run `cp .env.example .env`
+4. Install the dependencies by running `yarn` or `npm i`.
+5. Run `npm run test` or `yarn test` to run the test cases. **All test cases should pass in your final submit otherwise the task is considered as incomplete.**
+6. `npm run seed` creates 100 users and 2 posts per user. **Use this seeder to populate the database.**
 
 # Task
 `[GET] http://localhost:3000/users` should return all the users with their post count. This API should have server side pagination implemented.
