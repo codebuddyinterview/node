@@ -18,8 +18,9 @@ module.exports.seed = async (log = true) => {
             });
             if (log) console.log(chalk.blue("Created user's name: ", resp.name));
 
+            const postCount = Math.round((Math.random() * 4)) + 1; 
             await Promise.all(
-                Array.from(Array(2).keys()).map(async () => {
+                Array.from(Array(postCount).keys()).map(async () => {
                     await Post.create({
                         userId: resp._id,
                         title: faker.lorem.sentence(),
