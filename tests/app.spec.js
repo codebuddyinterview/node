@@ -8,7 +8,7 @@ beforeAll(async () => {
 });
 afterAll(async () => await disconnect());
 
-describe("#1. Check .env.sampe file", () => {
+describe("#1. Check .env.sample file exists", () => {
   test("Should check for .env.sample file", async () => {
     const doExists = existsSync("./.env.example");
 
